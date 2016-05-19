@@ -47,7 +47,7 @@ app.controller('TableController', ['$scope', function($scope) {
 	$scope.data = users;
 
 	$scope.removeUser = function(index) {
-		if(confirm(`Do you wanna remove user '${users[index].firstName} ${users[index].lastName}' ?`)) {
+		if(confirm(`Do you want to remove the user '${users[index].firstName} ${users[index].lastName}' ?`)) {
 			users.splice(index, 1);
 		}
 	}
