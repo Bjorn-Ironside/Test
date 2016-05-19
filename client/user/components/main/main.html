@@ -1,0 +1,96 @@
+<head>
+    <title>Task_Luxoft</title>
+</head>
+
+<body>
+    <div class="container" ng-app="app">
+        <div class="ui green segment">
+            <h3 class="ui header">Practical Task</h3>
+            <table class="ui celled padded table" ng-controller="TableController">
+                <thead>
+                <tr>
+                    <th>
+                        <a ng-click="predicate = 'firstName'; reverse=!reverse">First Name</a>
+                    </th>
+                    <th>
+                        <a ng-click="predicate = 'lastName'; direction=!reverse">Last Name</a>
+                    </th>
+                    <th>
+                        <a ng-click="predicate = 'phone'; reverse=!reverse">Phone</a>
+                    </th>
+                    <th>
+                        <a ng-click="predicate = 'gender'; reverse=!reverse">Gender</a>
+                    </th>
+                    <th>
+                        <a ng-click="predicate = 'age'; reverse=!reverse">Age</a>
+                    </th>
+                    <th class="right aligned">Functions</th>
+                </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="user in data | orderBy:predicate:reverse">
+                        <td>{{user.firstName}}</td>
+                        <td>{{user.lastName}}</td>
+                        <td>{{user.phone}}</td>
+                        <td>
+                            <div ng-if="user.gender">
+                                <i class="male icon"></i> Male
+                            </div>
+                            <div ng-if="!user.gender">
+                                <i class="female icon"></i> Female
+                            </div>
+                        </td>
+                        <td>{{user.age}}</td>
+                        <td class="right aligned">
+                            <div class="ui vertical animated button" tabindex="0" ng-click="removeUser($index)">
+                                <div class="visible content">Remove</div>
+                                <div class="hidden content">
+                                    <i class="trash icon"></i>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="ui blue segment">
+            <h3 class="ui header">Add new user</h3>
+            <form name="addUserForm" class="ui form" ng-controller="FormAddUserController" ng-submit="addUserForm.$valid && addNewUser(user)" novalidate>
+                <div class="two fields">
+                    <div class="field required">
+                        <label>First Name</label>
+                        <input type="text" name="first-name" placeholder="First Name" ng-pattern="patternWord" ng-model="user.firstName" required>
+                    </div>
+                    <div class="field required">
+                        <label>Last Name</label>
+                        <input type="text" name="last-name" placeholder="Last Name" ng-pattern="patternWord" ng-model="user.lastName" required>
+                    </div>
+                </div>
+                <div class="three fields">
+                    <div class="field required">
+                        <label>Phone</label>
+                        <input type="text" name="last-name" placeholder="Phone (111-11-11)" ng-pattern="patternPhone" ng-model="user.phone" required>
+                    </div>
+                    <div class="field required">
+                        <label>Gender</label>
+                        <select ng-model="user.gender" class="ui dropdown" required>
+                            <option value="" disabled selected>Gender</option>
+                            <option value="true">Male</option>
+                            <option value="false">Female</option>
+                        </select>
+                    </div>
+                    <div class="field required">
+                        <label>Age</label>
+                        <input type="number" name="last-name" placeholder="Age" ng-pattern="patternAge" ng-model="user.age" required>
+                    </div>
+                </div>
+                <div class="ui error visible message" ng-show="addUserForm.$error && addUserForm.$submitted">
+                    <p>All fields are required</p>
+                </div>
+
+                <button class="ui blue button" type="submit">Submit</button>
+            </form>
+        </div>
+    </div>
+
+</body>

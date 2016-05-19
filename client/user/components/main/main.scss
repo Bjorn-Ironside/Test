@@ -1,0 +1,20 @@
+.container {
+  width: 900px;
+  margin: 0 auto;
+  padding-top: 20px;
+
+  table {
+    a {
+      cursor: pointer;
+    }
+  }
+
+  .ng-invalid.ng-dirty {
+    border-color: #dd0000 !important;
+  }
+
+  .ng-valid.ng-dirty {
+    border-color: #009807 !important;
+  }
+}
+
